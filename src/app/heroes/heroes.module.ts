@@ -5,6 +5,7 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HeroeComponent } from './pages/heroe/heroe.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListadoComponent } from './pages/listado/listado.component';
+import { HerosRoutingModule } from './heros-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ListadoComponent } from './pages/listado/listado.component';
     HomeComponent,
     ListadoComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule,
+            HerosRoutingModule],
 })
 export class HeroesModule {}
