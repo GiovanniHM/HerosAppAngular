@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
+    component:HomeComponent,
     children:[
       {
         path: 'agregar',
@@ -21,12 +22,12 @@ const routes: Routes = [
         component: BuscarComponent
       },
       {
-        path: ':id',
-        component: HeroeComponent
+        path: 'editar/:id',
+        component: AgregarComponent
       },
       {
-        path: 'home',
-        component: HomeComponent
+        path: ':id',
+        component: HeroeComponent
       },
       {
         path: 'listado',
@@ -46,8 +47,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
-
-
-  ]
+  ],
+  exports:[RouterModule]
 })
 export class HerosRoutingModule { }
