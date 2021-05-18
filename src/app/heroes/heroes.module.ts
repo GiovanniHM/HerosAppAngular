@@ -9,6 +9,7 @@ import { HerosRoutingModule } from './heros-routing.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material/material.module';
+import { HeroeTarjetaComponentComponent } from './components/heroe-tarjeta-component/heroe-tarjeta-component.component';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,15 @@ import { MaterialModule } from '../material/material.module';
     HeroeComponent,
     HomeComponent,
     ListadoComponent,
+    HeroeTarjetaComponentComponent,
   ],
   imports: [CommonModule,
             HerosRoutingModule,
             FlexLayoutModule,
-            MaterialModule],
+            MaterialModule,
+          ],
+          exports:[
+            HeroeTarjetaComponentComponent
+          ]
 })
 export class HeroesModule {}
