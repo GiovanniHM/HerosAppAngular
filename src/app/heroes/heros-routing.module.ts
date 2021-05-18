@@ -26,7 +26,7 @@ const routes: Routes = [
         component: AgregarComponent
       },
       {
-        path: ':id',
+        path: '/:id',
         component: HeroeComponent
       },
       {
