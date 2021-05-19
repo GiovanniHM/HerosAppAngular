@@ -14,28 +14,22 @@ const routes: Routes = [
     component:HomeComponent,
     children:[
       {
-        path: 'agregar',
-        component: AgregarComponent
+        path: 'listado', component: ListadoComponent
       },
       {
-        path: 'buscar',
-        component: BuscarComponent
+        path: 'agregar', component: AgregarComponent
       },
       {
-        path: 'editar/:id',
-        component: AgregarComponent
+        path: 'editar/:id', component: AgregarComponent
       },
       {
-        path: '/:id',
-        component: HeroeComponent
+        path: 'buscar', component: BuscarComponent,
       },
       {
-        path: 'listado',
-        component: ListadoComponent
+        path: ':id', component: HeroeComponent
       },
       {
-        path: '**',
-        redirectTo: 'listado'
+        path: '**', redirectTo: 'listado'
       }
     ]
   }
