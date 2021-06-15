@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { switchMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 @Component({
   selector: 'app-agregar',
@@ -15,7 +18,10 @@ export class AgregarComponent implements OnInit {
     private fb: FormBuilder,
     private hs: HeroesService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
+
   ) {}
 
   publishers = [
@@ -65,21 +71,37 @@ export class AgregarComponent implements OnInit {
     if (this.hero.id) {
       //Actualizar
       this.hs.actualizarHero(this.hero)
-      .subscribe(hero => console.log('Actualizando', hero));
+      .subscribe(hero => this.mostrarSnakbar('Registro actualizado'));
     } else {
       //Crear
       this.hs.agregarHero(this.hero)
       .subscribe(hero => {
+        this.mostrarSnakbar('Registro creado'),
         this.router.navigate(['/heroes/editar', hero.id])
       })
     };
   }
 
   borrar(){
-    this.hs.borrarHero(this.hero.id)
-    .subscribe(resp => {
-      this.router.navigate(['/heroes'])
-    } );
+
+    this.dialog.open(ConfirmarComponent,
+      {
+        width:'250px'
+      })
+
+
+    // this.hs.borrarHero(this.hero.id)
+    // .subscribe(resp => {
+    //   this.mostrarSnakbar('Eliminado')
+    //   this.router.navigate(['/heroes'])
+    // } );
+
+  }
+
+  mostrarSnakbar(mensaje: string): void{
+    this.snackBar.open(mensaje, 'ok', {
+      duration: 2500
+    });
   }
 
   ngOnInit(): void {
