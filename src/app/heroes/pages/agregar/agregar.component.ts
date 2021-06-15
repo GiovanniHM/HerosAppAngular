@@ -30,6 +30,7 @@ export class AgregarComponent implements OnInit {
   ];
 
   heroDataFrom: FormGroup = this.fb.group({
+    id: [''],
     superhero: ['', [Validators.required]],
     alter_ego: ['', [Validators.required]],
     characters: ['', [Validators.required]],
@@ -74,12 +75,25 @@ export class AgregarComponent implements OnInit {
     };
   }
 
+  borrar(){
+    this.hs.borrarHero(this.hero.id)
+    .subscribe(resp => {
+      this.router.navigate(['/heroes'])
+    } );
+  }
+
   ngOnInit(): void {
+
+    if(!this.router.url.includes('editar')){
+    return;
+    }
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.hs.getHeroById(id),
 
       ))
       .subscribe((heroe) => {
+        this.hero = heroe
+        this.heroDataFrom.controls['id'].setValue(heroe.id);
         this.heroDataFrom.controls['superhero'].setValue(heroe.superhero);
         this.heroDataFrom.controls['alter_ego'].setValue(heroe.alter_ego);
         this.heroDataFrom.controls['characters'].setValue(heroe.characters);
