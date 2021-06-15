@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material/material.module';
 import { HeroeTarjetaComponentComponent } from './components/heroe-tarjeta-component/heroe-tarjeta-component.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { ImagenPipe } from './pipes/imagen.pipe';
             HerosRoutingModule,
             FlexLayoutModule,
             MaterialModule,
+            FormsModule,
+            ReactiveFormsModule
           ],
           exports:[
             HeroeTarjetaComponentComponent
