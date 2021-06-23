@@ -34,6 +34,7 @@ get auth(){
     return this.htpp.get<Auth>(`${this.baseUrl}usuarios/1`)
     .pipe(
       map(auth =>{
+        this._auth = auth;
         console.log('map', this.auth);
         return true;
       })
